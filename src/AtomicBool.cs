@@ -1,5 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using Soenneker.Atomics.ValueBools;
+﻿using Soenneker.Atomics.ValueBools;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Soenneker.Atomics.Bools;
 
@@ -8,6 +9,7 @@ namespace Soenneker.Atomics.Bools;
 /// <para/>
 /// This is a reference type so it can be safely shared without accidental struct copying.
 /// </summary>
+[DebuggerDisplay("{Value}")]
 public sealed class AtomicBool
 {
     private ValueAtomicBool _value;
