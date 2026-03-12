@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Atomics.Bools.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Atomics.Bools\Soenneker.Atomics.Bools.csproj" />
     </ItemGroup>
 
     <ItemGroup>
