@@ -14,9 +14,6 @@ public sealed class AtomicBool
 {
     private ValueAtomicBool _value;
 
-    /// <summary>
-    /// Initializes a new <see cref="AtomicBool"/> with the specified initial value.
-    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public AtomicBool(bool initialValue = false)
     {
@@ -71,5 +68,9 @@ public sealed class AtomicBool
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TrySetFalse() => _value.TrySetFalse();
 
+    /// <summary>
+    /// Returns a string representation of the current instance.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     public override string ToString() => Read() ? "true" : "false";
 }
