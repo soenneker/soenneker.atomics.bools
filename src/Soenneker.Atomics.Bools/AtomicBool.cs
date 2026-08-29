@@ -23,24 +23,31 @@ public sealed class AtomicBool
     /// <summary>
     /// Reads the current value of the atomic boolean.
     /// </summary>
+    /// <returns>true if reads the current value of the atomic boolean; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Read() => _value.Read();
 
     /// <summary>
     /// Writes a new value to the atomic boolean.
     /// </summary>
+    /// <param name="value">Replacement value to store atomically.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Write(bool value) => _value.Write(value);
 
     /// <summary>
     /// Atomically replaces the current value with <paramref name="value"/> and returns the previous value.
     /// </summary>
+    /// <param name="value">Replacement value to store atomically.</param>
+    /// <returns>true if atomically replaces the current value with and returns the previous value; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Exchange(bool value) => _value.Exchange(value);
 
     /// <summary>
     /// Atomically sets the value to <paramref name="newValue"/> if the current value equals <paramref name="expected"/>.
     /// </summary>
+    /// <param name="expected">Value that must currently be stored for the update to succeed.</param>
+    /// <param name="newValue">Whether new value.</param>
+    /// <returns>true if atomically sets the value to if the current value equals; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool CompareAndSet(bool expected, bool newValue) => _value.CompareAndSet(expected, newValue);
 
@@ -59,12 +66,14 @@ public sealed class AtomicBool
     /// <summary>
     /// Attempts to atomically transition the value from false to true.
     /// </summary>
+    /// <returns>true if the requested update was applied; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TrySetTrue() => _value.TrySetTrue();
 
     /// <summary>
     /// Attempts to atomically transition the value from true to false.
     /// </summary>
+    /// <returns>true if the requested update was applied; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TrySetFalse() => _value.TrySetFalse();
 
