@@ -13,6 +13,33 @@ A lightweight atomic boolean wrapper implemented on top of `ValueAtomicBool`. Th
 dotnet add package Soenneker.Atomics.Bools
 ```
 
+## Usage
+
+Use `TrySetTrue` when exactly one concurrent caller should win a transition:
+
+```csharp
+using Soenneker.Atomics.Bools;
+
+private readonly AtomicBool _started = new();
+
+public void Start()
+{
+    if (!_started.TrySetTrue())
+        return;
+
+    // Only the false-to-true winner reaches this point.
+    StartCore();
+}
+```
+
+`Exchange` is useful when the previous state determines the action:
+
+```csharp
+bool wasEnabled = featureEnabled.Exchange(false);
+```
+
+`AtomicBool` is a reference type, so every holder of the same instance observes the same atomic state. Its individual operations are atomic; a sequence such as `if (!Value) Value = true` is not. Use `TrySetTrue`, `TrySetFalse`, or `CompareAndSet` for conditional transitions.
+
 ## What you get
 
 - `AtomicBool` — A lightweight atomic boolean wrapper implemented on top of `ValueAtomicBool`. This is a reference type so it can be safely shared without accidental struct copying.
