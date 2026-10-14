@@ -45,6 +45,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Atomics.ValueBools" Version="4.0.53" />
+        <PackageReference Include="Soenneker.Atomics.ValueBools" Version="4.0.54" />
     </ItemGroup>
 </Project>
